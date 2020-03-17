@@ -16,32 +16,41 @@ public class MsgThread extends Thread{
     private int viive;
     private String msg;
     
-    private static AtomicInteger luku;
-    private static int count;
+    private static int k;
     
-    public MsgThread(int viive, String msg){
+    public static AtomicInteger luku;
+    
+    public MsgThread(int viive, String msg, int k){
         this.viive = viive;
         this.msg = msg;
         if(luku == null){
             luku = new AtomicInteger();
             luku.set(0);
         }
-        
+        if(k > this.k){
+            this.k = k;
+        }
         
     }
     
     public void run(){
         
-        while(luku.get() < 100){
+        while(true){
             try{
                 Thread.sleep(viive * 1000);
             }catch(Exception e){
                 System.out.println("ERROR: "+e);
             }
             int x = luku.incrementAndGet();
+            //tehtävä 11 pysäytys
             if(x > 100){
                 break;
             }
+            //tehtävä 12 pysäytys
+            if(x > k/2){
+                break;
+            }
+            
             System.out.println("Kirjoitusvuoro "+x+". Viesti: "+msg);
         }
     }    

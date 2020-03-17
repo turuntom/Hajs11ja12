@@ -5,6 +5,7 @@
  */
 package threadtehtava;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -12,31 +13,38 @@ import java.util.Random;
  * @author Tomi
  */
 public class ThreadTehtava {
-
+    
+    static Random rng = new Random();
+    static ArrayList<Thread> lista = new ArrayList<>();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        int k = 6;
+        luoSaikeet(k);
         
-        Random rng = new Random();
-        
-        
-        
-        MsgThread lanka1 = new MsgThread(rng.nextInt(10), "Tidii lanka1 tässä terve");
-        MsgThread lanka2 = new MsgThread(rng.nextInt(10), "Haloo haloo lanka 2 täällä");
-        MsgThread lanka3 = new MsgThread(rng.nextInt(10), "Jou jou yeah lanka 3 kuittaa");
-        MsgThread lanka4 = new MsgThread(rng.nextInt(10), "Jee jee gg lanka 4 olen");
-        MsgThread lanka5 = new MsgThread(rng.nextInt(10), "lanka 5 liittyy keskusteluun");
-        MsgThread lanka6 = new MsgThread(rng.nextInt(10), "olen lanka 6 hey hey");
-        
-        lanka1.start();
-        lanka2.start();
-        lanka3.start();
-        lanka4.start();
-        lanka5.start();
-        lanka6.start();
+        //Tehtävä 12 säikeiden pysäytys
+        while(true){
+            if(MsgThread.luku.get() >= k/2){
+                for(Thread lanka : lista){
+                    lanka.interrupt();
+                }
+                break;
+            }
+        }
         
     }
+    
+    private static void luoSaikeet(int k){
+        rng = new Random();
+        for (int i = 0; i < k; i++) {
+            MsgThread lanka = new MsgThread(rng.nextInt(10), "Tidii lanka " +(i+1)+"#*#" +(i+1)+"#*#" +(i+1)+"#*#" +(i+1)+"#*#" + " tässä terve",k);
+            lista.add(lanka);
+            lanka.start();
+        }
+        
+    }
+    
     
 }
