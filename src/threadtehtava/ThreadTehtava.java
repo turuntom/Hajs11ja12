@@ -33,7 +33,6 @@ public class ThreadTehtava {
                 break;
             }
         }
-        
     }
     
     private static void luoSaikeet(int k){
@@ -43,8 +42,5 @@ public class ThreadTehtava {
             lista.add(lanka);
             lanka.start();
         }
-        
     }
-    
-    
 }

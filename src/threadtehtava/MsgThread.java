@@ -15,9 +15,7 @@ public class MsgThread extends Thread{
     
     private int viive;
     private String msg;
-    
     private static int k;
-    
     public static AtomicInteger luku;
     
     public MsgThread(int viive, String msg, int k){
@@ -30,7 +28,6 @@ public class MsgThread extends Thread{
         if(k > this.k){
             this.k = k;
         }
-        
     }
     
     public void run(){
@@ -50,7 +47,6 @@ public class MsgThread extends Thread{
             if(x > k/2){
                 break;
             }
-            
             System.out.println("Kirjoitusvuoro "+x+". Viesti: "+msg);
         }
     }    
